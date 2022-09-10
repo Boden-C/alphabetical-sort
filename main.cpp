@@ -23,7 +23,9 @@ void countingSort(string array[], int length, size_t characterAt){
         arrayOfCount[i] += arrayOfCount[i - 1];
     }
     for (int i = length - 1; i >= 0; i--){ //creates new array using new index
-        newArray[arrayOfCount[characterAt < array[i].size() ? (int)(unsigned char)array[i][characterAt] + 1 : 0] - 1] = array[i];
+        newArray[
+                 arrayOfCount[characterAt < array[i].size() ? (int)(unsigned char)array[i][characterAt] + 1 : 0] - 1 //the index to assign the word at
+                ] = array[i];
         arrayOfCount[characterAt < array[i].size() ? (int)(unsigned char)array[i][characterAt] + 1 : 0]--;
     }
     for (int i = 0; i < length; i++){ //outputs new array to old array
