@@ -11,9 +11,12 @@ void countingSort(std::vector<string> &array, int length, size_t characterAt){
 
     std::vector<string> newArray(length);
     std::vector<int> arrayOfCount(27, 0);
+    std::vector<int> indexes(length);
     
-    for (int i = 0; i < length; i++){ //counts each unique character code 
-	arrayOfCount[characterAt < array[i].size() ? (codeFor.find(string(1,array[i][characterAt])) == codeFor.end() ? 0 : codeFor.at(string(1,array[i][characterAt]))) : 0]++;
+    for (int i = 0; i < length; i++){ //counts each unique character code
+        int index = characterAt < array[i].size() ? (codeFor.find(string(1,array[i][characterAt])) == codeFor.end() ? 0 : codeFor.at(string(1,array[i][characterAt]))) : 0;
+	arrayOfCount[index]++;
+	indexes[i] = index;
     }
     for (int i = 1; i < 26; i++){ //finds index
         arrayOfCount[i] += arrayOfCount[i - 1];
@@ -21,7 +24,7 @@ void countingSort(std::vector<string> &array, int length, size_t characterAt){
     
     for (int i = length - 1; i >= 0; i--){ //creates new array using new index
 	if (characterAt < array[i].size()) {
-	    int index = (codeFor.find(string(1,array[i][characterAt])) == codeFor.end() ? 0 : codeFor.at(string(1,array[i][characterAt])));
+	    int index = indexes[length-1-i];
 	    newArray[arrayOfCount[index]-1] = array[i];
 	    arrayOfCount[index]--;
 	} else {
