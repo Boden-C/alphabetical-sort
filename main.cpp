@@ -18,7 +18,7 @@ void t(std::vector<std::string> &a, int l, size_t c){
     }
     for (int i = l - 1; i >= 0; i--) {
         if (c < a[i].size()) {
-            int z = x[l - 1 - i];
+            int z = x[i];
             n[o[z] - 1] = a[i];
             o[z]--;
         } else {
